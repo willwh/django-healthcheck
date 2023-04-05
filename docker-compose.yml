@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:latest
+    stop_signal: SIGINT
+    ports:
+      - 1433:1433
+    volumes:
+      - ./sqlserver/data:/data
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=SuperS3cr3t
+  redis:
+    image: redis:latest
+    stop_signal: SIGINT
+    volumes:
+      - ./redis/data:/data:Z
+    ports:
+      - 6379:6379
